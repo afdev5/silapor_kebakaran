@@ -15,5 +15,5 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/maps', 'MapsController@index')->name('maps');
 Route::get('/mapslapor{id}', 'MapsController@laporan')->name('maps.lapor');
-Route::resource('/user', 'Usercontroller');
-Route::resource('/laapor', 'Laporcontroller');
+Route::resource('/user', 'UsserController');
+Route::resource('/laapor', 'LaporController');

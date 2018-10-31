@@ -193,7 +193,7 @@
           // } else {
           //     txt = "You pressed Cancel!";
           // }
-          window.open("{{ route('lapor.index') }}")
+          window.open("{{ route('laapor.index') }}")
         });
       @else
         var channel = 'lapor-channel';
