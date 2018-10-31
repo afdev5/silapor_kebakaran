@@ -16,7 +16,6 @@ class UsersController extends Controller
     public function register(Request $request){
         $req = $request->all();
         $messsages = array( 
-                            'email.required'=>'Email Harus Diisi',
                             'password.required'=>'Password Harus Diisi',
                             'name.required'=>'Nama Harus Diisi',
                             'nik.required'=>'Nik Harus Diisi',
@@ -24,7 +23,7 @@ class UsersController extends Controller
                             'no_hp.required'=>'No HP Harus Diisi',
                            );   
 
-        $rules = array( 'email' => 'required',
+        $rules = array(
                         'password' => 'required',
                         'name' => 'required',
                         'nik' => 'required',
