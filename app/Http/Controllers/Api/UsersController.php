@@ -129,6 +129,7 @@ class UsersController extends Controller
              $input = $request->except('gambar');
              $upload = $request->file('gambar');
              $input['gambar'] = $upload->store('lapor');
+             $input['status'] = '1';
              $data = Lapor::create($input);
             if($data){
                   event(new LaporEvent('Ada Laporan Kebakaran Masuk !!!!', [1]));
