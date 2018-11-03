@@ -21,7 +21,7 @@
                             <th>No</th>
 	                          <th>Nama</th>
                             <th>Nik</th>
-                            <th>Email</th>
+                            <th>No Hp</th>
                             <th>Alamat</th>
 	                          <th style="width: 150px">#</th>
 	                        </tr>
@@ -35,7 +35,7 @@
                             <td>{{ $no++ }}</td>
                             <td>{{ $items->name }}</td>
                             <td>{{ $items->nik }}</td>
-                            <td>{{ $items->email }}</td>
+                            <td>{{ $items->no_hp }}</td>
                             <td>{{ $items->alamat }}</td>
                             <td>
                             <form action="{{ route('user.destroy', $items->id) }}" method="post">

@@ -51,7 +51,7 @@
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion ion-ios-bell-outline"></i></a>
+          <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion ion-ios-bell-outline"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
                 <div class="float-right">
@@ -75,14 +75,11 @@
                 </a>
               </div>
             </div>
-          </li>
+          </li> -->
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
             <i class="ion ion-android-person d-lg-none"></i>
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item has-icon">
-                <i class="ion ion-android-person"></i> Profile
-              </a>
               @guest
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -126,7 +123,7 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active">
-              <a href="#"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
+              <a href="{{ route('home') }}"><i class="ion ion-speedometer"></i><span>Dashboard</span></a>
             </li>
 
             <li class="menu-header">Menu</li>
@@ -137,12 +134,15 @@
               <a href="{{ route('maps') }}"><i class="ion ion-ios-location-outline"></i><span>Maps</span></a>
             </li>
             <li>
-              <a href="{{ route('laapor.index') }}"><i class="ion ion-stats-bars"></i><span>Lapor</span></a>
+              <a href="{{ route('laapor.index') }}"><i class="ion ion-stats-bars"></i><span>Laporan Masuk</span></a>
+            </li>
+            <li>
+              <a href="{{ route('laporan.index') }}"><i class="ion ion-stats-bars"></i><span>Rekapan Laporan</span></a>
             </li>
           </ul>
         </aside>
       </div>
-      <div class="main-content">
+      <div class="main-content" id="main">
         <!-- Main -->
         @yield('content')
         <!-- End Main -->
@@ -171,37 +171,6 @@
   <script src="{{ asset('assets/js/custom.js') }}"></script>
   <!-- <script src="../dist/js/demo.js"></script> -->
   <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript">
-    var alarm = new Audio("{{ asset('assets/alarm.mp3') }}");
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: "6324c7277b283f63b2e1",
-        cluster: "ap1",
-        // Sebaiknya encrypted dan disableStats dijadikan false bila diakses dari localhost atau public ip
-        encrypted: true,
-        disableStats: true
-      });
-
-      @if (Auth::check())
-        var channel = 'lapor-channel.{{ Auth::user()->id }}';
-        Echo.channel(channel).listen('LaporEvent', function(e) {
-          alarm.play()
-          // alert(e.message);
-          // var r = confirm("Pe!");
-          // if (r == true) {
-          //     txt = "You pressed OK!";
-          // } else {
-          //     txt = "You pressed Cancel!";
-          // }
-          // window.open("{{ route('laapor.index') }}")
-        });
-      @else
-        var channel = 'lapor-channel';
-        Echo.channel(channel).listen('LaporEvent', function(e) {
-          alert(e.message);
-        });
-      @endif
-  </script>
   <script type="text/javascript">
           function modal(){
             $('#modal').modal('toggle');

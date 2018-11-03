@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lapor;
-use App\User;
-use App\Helper\SendNotif;
-class LaporController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,8 @@ class LaporController extends Controller
      */
     public function index()
     {
-        $data = Lapor::where('status', '0')->orderBy('id', 'DESC')->get();
-        return view('maps.lapor', compact('data'));
+        $data = Lapor::where('status', '1')->orderBy('id', 'DESC')->get();
+        return view('laporan.index', compact('data'));
     }
 
     /**
@@ -26,7 +24,8 @@ class LaporController extends Controller
      */
     public function create()
     {
-        //
+        $data = Lapor::where('status', '1')->orderBy('id', 'DESC')->get();
+        return view('laporan.maps', compact('data'));
     }
 
     /**
@@ -45,19 +44,10 @@ class LaporController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */ // Terima Laporan
+     */
     public function show($id)
     {
-        $lapor = Lapor::findOrFail($id);
-        $data['lat'] = $lapor->lat;
-        $data['long'] = $lapor->long;
-        $ubah['status'] = '1';
-        $lapor->update($ubah);
-
-        // Kirim Notif Ke Android
-        $user = User::findOrFail($lapor->user_id);
-        SendNotif::sendNotifikasi($user->token);
-        return view('maps.index', compact('data'));
+        //
     }
 
     /**

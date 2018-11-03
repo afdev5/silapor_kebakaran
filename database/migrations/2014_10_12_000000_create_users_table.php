@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nik')->unique();
             $table->text('alamat');
+            $table->string('token')->nullable();
             $table->enum('role', ['0','1', '2']); // 0.Admin, 1.User , 2.Maps
             $table->rememberToken();
             $table->timestamps();

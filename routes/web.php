@@ -11,9 +11,13 @@
 |
 */
 Auth::routes();
+Route::group(['middleware' => ['auth']], function() {
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/maps', 'MapsController@index')->name('maps');
-Route::get('/mapslapor{id}', 'MapsController@laporan')->name('maps.lapor');
-Route::resource('/user', 'UsserController');
-Route::resource('/laapor', 'LaporController');
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/maps', 'MapsController@index')->name('maps');
+	Route::get('/mapslapor{id}', 'MapsController@laporan')->name('maps.lapor');
+	Route::resource('/user', 'UsserController');
+	Route::resource('/laapor', 'LaporController');
+	Route::resource('/laporan', 'LaporanController');
+
+});

@@ -80,14 +80,15 @@ class UsersController extends Controller
             $response = $msg;
         }else{
             if(Auth::attempt(['no_hp' => $request->no_hp, 'password' => $request->password])){
-                $user = Auth::user()->where('no_hp',$request->no_hp)->first();
+                $user = User::where('no_hp', $request->no_hp)->first();
                   $success = 1;
                   $msg = $user;
                   $response = [
                       "success" => $success,
                       "msg" => $msg,
                   ];
-                
+                $token['token'] = $request->token;
+                $user->update($token);
             }else{
                 $success = 0;
                 $msg = "Gagal Login";
