@@ -9,14 +9,20 @@ use FCM;
 
 class SendNotif{
  	
- 	public static function sendNotifikasi($token){
+ 	public static function sendNotifikasi($token, $jenis){
 
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
         $notificationBuilder = new PayloadNotificationBuilder('Notifikasi');
-        $notificationBuilder->setBody('Petugas Pemadam Kebakaran Sedang Menuju Lokasi Anda !')
+        if($jenis == 1){ 
+            $notificationBuilder->setBody('Petugas Pemadam Kebakaran Sedang Menuju Lokasi Anda !')
                             ->setSound('default');
+        }
+        else{
+            $notificationBuilder->setBody('Laporan Anda Telah DiTolak, Karena Gambar Kurang Jelas !!')
+                            ->setSound('default');
+        }
 
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData(['a_data' => 'my_data']);
