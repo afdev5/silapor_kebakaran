@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Lapor;
 use App\User;
 use App\Helper\SendNotif;
+use Storage;
+
 class LaporController extends Controller
 {
     /**
@@ -53,7 +55,6 @@ class LaporController extends Controller
         $data['long'] = $lapor->long;
         $ubah['status'] = '1';
         $lapor->update($ubah);
-
         // Kirim Notif Ke Android
         $user = User::findOrFail($lapor->user_id);
         SendNotif::sendNotifikasi($user->token);
@@ -68,7 +69,16 @@ class LaporController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $data = Lapor::findOrFail($id);
+        if ($data->gambar != null) {
+            Storage::delete($data->gambar);
+        }
+        $data->delete();
+        // Kirim Notif Ke Android
+        $user = User::findOrFail($data->user_id);
+        SendNotif::sendNotifikasi($user->token);
+        return redirect()->route('laapor.index');
     }
 
     /**
@@ -91,6 +101,5 @@ class LaporController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

@@ -24,7 +24,7 @@
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 				attribution: 'Map data&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 18,
-				id: 'mapbox.dark',
+				id: 'mapbox.streets',
 				accessToken: 'pk.eyJ1IjoibWFyY2VsbGthbGl0b3V3IiwiYSI6ImNqbWM3Z2k4OTA3NXIza256OWY4MXM1cWQifQ.ZuXcoyil-xRQl1JRGdl69g'
 			}).addTo(mymap);
 
@@ -44,7 +44,7 @@
 
 	marker.bindPopup("Lokasi Kebakaran!").openPopup();
 	circle.bindPopup("ini sebuah circle.");
-	titik.bindPopup("<b>Ini Tempat favoritku menunggumu :)<b>").addTo(mymap);
+	titik.bindPopup("<b>Lokasi Kebakaran <b>").addTo(mymap);
 
 	var popup = L.popup();
 	function onMapClick(e) {popup
