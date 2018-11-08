@@ -23,6 +23,7 @@
                             <th>No Hp</th>
                             <th>Keterangan</th>
                             <th style="width: 100px">Gambar</th>
+                            <th style="width: 100px">#</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -36,6 +37,7 @@
                             <td>{{ $items->user['no_hp'] }}</td>
                             <td>{{ $items->keterangan }}</td>
                             <td><a class="lihat_img btn btn-sm btn-info" href="{{ asset('upload/'. $items->gambar) }}">Lihat</a></td>
+                            <td><a class="btn btn-sm btn-success" href="{{ route('laporan.show', $items->id) }}">Terima</a></td>
                           </tr>
 
                           <!-- Modal -->
