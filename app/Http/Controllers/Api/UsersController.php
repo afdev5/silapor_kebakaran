@@ -115,7 +115,6 @@ class UsersController extends Controller
                         'lat' => 'required',
                         'long' => 'required',
                         'gambar' => 'required',
-                        'keterangan' => 'required'
                       );
 
         $validator = Validator::make($request->all(), $rules,$messsages);
