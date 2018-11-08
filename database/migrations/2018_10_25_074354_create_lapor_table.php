@@ -20,7 +20,7 @@ class CreateLaporTable extends Migration
             $table->string('lat');
             $table->string('long');
             $table->string('gambar')->nullable();
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->enum('status', ['0','1']); 
             $table->timestamps();
         });

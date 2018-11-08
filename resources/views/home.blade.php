@@ -72,7 +72,7 @@ $user = App\User::where('role', '1')->count();
           window.open("{{ route('laapor.index') }}", '_blank')
           setTimeout(function(){
             alarm.volume = 0
-          }, 5000); 
+          }, 20000); 
         });
       @else
         var channel = 'lapor-channel';

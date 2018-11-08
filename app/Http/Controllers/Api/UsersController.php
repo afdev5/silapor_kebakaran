@@ -106,14 +106,12 @@ class UsersController extends Controller
    	  $req = $request->all();
         $messsages = array( 
                             'user_id.required'=>'Anda Harus Login Kembali',
-                            'keterangan.required'=>'Keterangan Harus Diisi',
                             'lat.required'=>'Anda Harus Menyalakan GPS',
                             'long.required'=>'Anda Harus Menyalakan GPS',
                             'gambar.required'=>'Anda Harus Memotret Keadaan Kebakaran',
                            );   
 
         $rules = array( 'user_id' => 'required',
-                        'keterangan' => 'required',
                         'lat' => 'required',
                         'long' => 'required',
                         'gambar' => 'required',
