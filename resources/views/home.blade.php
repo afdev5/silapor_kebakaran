@@ -48,8 +48,8 @@ $user = App\User::where('role', '1')->count();
 <script type="text/javascript">
   var alarm = new Audio("{{ asset('assets/alarm.mp3') }}");
   alarm.currentTime = 10;
-  var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
-                           cluster: '{{ env('MIX_PUSHER_APP_CLUSTER') }}',
+  var pusher = new Pusher('6324c7277b283f63b2e1', {
+                           cluster: 'ap1',
                            encrypted: true
                          });
 
