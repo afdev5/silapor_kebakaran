@@ -46,39 +46,31 @@ $user = App\User::where('role', '1')->count();
 
 @section('js')
 <script type="text/javascript">
-    var alarm = new Audio("{{ asset('assets/alarm.mp3') }}");
-    alarm.currentTime = 10;
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: "6324c7277b283f63b2e1",
-        cluster: "ap1",
-        // Sebaiknya encrypted dan disableStats dijadikan false bila diakses dari localhost atau public ip
-        encrypted: true,
-        disableStats: true
-      });
+  var alarm = new Audio("{{ asset('assets/alarm.mp3') }}");
+  alarm.currentTime = 10;
+  var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
+                           cluster: '{{ env('MIX_PUSHER_APP_CLUSTER') }}',
+                           encrypted: true
+                         });
 
-      @if (Auth::check())
-        var channel = 'lapor-channel.{{ Auth::user()->id }}';
-        Echo.channel(channel).listen('LaporEvent', function(e) {
-          // $("#main").load("{{ route('laapor.index') }}" + " #main");
-          alarm.play()
-          // alert(e.message);
-          // var r = confirm("Pe!");
-          // if (r == true) {
-          //     txt = "You pressed OK!";
-          // } else {
-          //     txt = "You pressed Cancel!";
-          // }
-          window.open("{{ route('laapor.index') }}", '_blank')
+
+     @if (Auth::check())
+       var channel = pusher.subscribe('lapor-channel.{{ Auth::user()->id }}');
+       channel.bind('App\\Events\\LaporEvent', function(data) {
+           // this is called when the event notification is received...
+           alarm.play()
+           window.open("{{ route('laapor.index') }}", '_blank')
           setTimeout(function(){
             alarm.volume = 0
           }, 20000); 
-        });
-      @else
-        var channel = 'lapor-channel';
-        Echo.channel(channel).listen('LaporEvent', function(e) {
-          alert(e.message);
-        });
-      @endif
-  </script>
+       });
+       
+     @else
+     var channel = pusher.subscribe('lapor-channel');
+       channel.bind('App\\Events\\LaporEvent', function(data) {
+           // this is called when the event notification is received...
+           console.log('oke');
+       });
+     @endif
+</script>
 @endsection

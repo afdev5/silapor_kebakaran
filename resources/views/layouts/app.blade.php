@@ -24,7 +24,7 @@
   <!-- Datatable -->
   <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.js"></script> --}}
   <link rel="stylesheet" href="{{ asset('assets/magnific-popup/magnific-popup.css') }}">
 
   <!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>

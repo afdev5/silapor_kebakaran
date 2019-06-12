@@ -47,10 +47,10 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        $lapor = Lapor::findOrFail($id);
-        $data['lat'] = $lapor->lat;
-        $data['long'] = $lapor->long;
-        return view('maps.index', compact('data'));
+        // $lapor = Lapor::findOrFail($id);
+        // $data['lat'] = $lapor->lat;
+        // $data['long'] = $lapor->long;
+        // return view('maps.index', compact('data'));
     }
 
     /**
