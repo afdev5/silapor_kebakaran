@@ -57,7 +57,7 @@ class LaporController extends Controller
         $lapor->update($ubah);
         // Kirim Notif Ke Android
         $user = User::findOrFail($lapor->user_id);
-        SendNotif::sendNotifikasi($user->token, 1);
+        // SendNotif::sendNotifikasi($user->token, 1);
         return view('maps.index', compact('data'));
     }
 
